@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<style>
+.element {
+    pointer-events: none;
+}
+</style>
+</head>
+<body>
+
+<div class="change-icon-replace-a">
+    <ul style="margin:0 22px 0 -22px;text-decoration: none;">
+        <li class="fa fa-star-o common-color"></li>
+        <li class="fa fa-star-o common-color"></li>
+        <li class="fa fa-star-o common-color"></li>
+        <li class="fa fa-star-o common-color"></li>&nbsp;&nbsp;&nbsp;&nbsp;
+        <a class="common-color" href="product_page.html">100$</a>
+    </ul>
+</div>
+<div class="change-icon-replace-b">
+    <ul style="margin:0 22px 0 -22px;text-decoration: none;">
+        <li class="fa fa-star-o common-color"></li>
+        <li class="fa fa-star-o common-color"></li>
+        <li class="fa fa-star-o common-color"></li>
+        <li class="fa fa-star-o common-color"></li>&nbsp;&nbsp;&nbsp;&nbsp;
+        <a class="common-color" href="product_page.html">100$</a>
+    </ul>
+</div>
+<div class="change-icon-replace-c">
+    <ul style="margin:0 22px 0 -22px;text-decoration: none;">
+        <li class="fa fa-star-o common-color"></li>
+        <li class="fa fa-star-o common-color"></li>
+        <li class="fa fa-star-o common-color"></li>
+        <li class="fa fa-star-o common-color"></li>&nbsp;&nbsp;&nbsp;&nbsp;
+        <a class="common-color" href="product_page.html">100$</a>
+    </ul>
+</div>
+
+<script>
+$(document).ready(function(){
+	$('.element').on('mouseover mouseenter mouseleave mouseup mousedown', function(){
+    	return false
+    });
+    function myFunction(xox) {
+        $(xox).mousedown(function(){
+            $(this).prevAll("li").removeClass("fa fa-star-o");
+            $(this).prevAll("li").addClass("fa fa-star");
+            $(this).removeClass("fa fa-star-o");
+            $(this).addClass("fa fa-star");
+            $(xox).mouseout(function(){
+              return $(this).mousedown(); 
+            });
+            $(xox).addClass("element");
+        });
+        $(xox).mouseover(function(){
+            $(this).prevAll("li").removeClass("fa fa-star-o");
+            $(this).prevAll("li").addClass("fa fa-star");
+            $(this).removeClass("fa fa-star-o");
+            $(this).addClass("fa fa-star");
+        });
+        $(xox).mouseout(function(){
+            $(this).prevAll("li").removeClass("fa fa-star");
+            $(this).prevAll("li").addClass("fa fa-star-o");
+            $(this).removeClass("fa fa-star");
+            $(this).addClass("fa fa-star-o");
+        });
+    }
+    myFunction(".change-icon-replace-a ul li");
+    myFunction(".change-icon-replace-b ul li");
+    myFunction(".change-icon-replace-c ul li");
+});
+</script>
+
+</body>
+</html>

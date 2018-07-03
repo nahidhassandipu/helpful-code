@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Killer navigation-bar</title>
+	<meta charset="utf-8">
+  	<meta name="viewport" content="width=device-width, initial-scale=1">
+  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<style type="text/css">			
+	.navbar, header {
+		background: #fff;
+		border-top : 1px solid #f5f5f7; 
+	}
+	.navbar {
+		padding: 10px 80px 20px 90px;
+		font-size: 16px;
+		margin-bottom: 0px;
+		border-radius: 0 !important;
+	}
+	header {
+		padding: 10px 3.4% 10px 5%;
+		font-size: 16px;
+		margin-bottom: 0px;
+		border-radius: 0 !important;
+		border-bottom: 1px solid #f5f5f7;
+	}
+	.my-logo-container {
+		position: absolute;
+		top: 1%;
+		left: 5%;
+	}
+	.button-toggle {
+		position: absolute;
+		top: -2%;
+		left: 90%;
+		right: 3%;
+	}
+	.header-icon {
+		position: absolute;
+		top: 30%;
+		right: 5%;
+	}
+	.header-icon i {
+		padding: 0 15px 0 0
+	}
+	.header-icon i:hover {
+		cursor: pointer;
+		color: #ff7013 !important;
+	}
+	@media (max-width: 768px) {
+		header {
+			display: none !important;
+		}
+		.my-logo-container {
+			top: -15%;
+		}
+		.header-icon {
+			display: none;
+		}
+		.navbar .container .navbar-collapse .navbar-nav {
+			margin-bottom: 0;
+			padding-left: 0;
+			overflow: hidden;
+		}
+		.navbar .container .navbar-collapse {
+			left: 0;
+			width: 115%;
+			top: 100%;
+			position: absolute;
+			z-index: 1 !important;
+			background-color: white !important;
+			color: red !important;
+		}
+		.navbar .container .navbar-collapse .navbar-nav {
+			border-bottom-color: orange !important;
+			text-align: left;
+			float: left !important;
+		}
+	}
+	.navbar .container .navbar-collapse .navbar-nav {
+		margin-bottom: -1%;
+		padding-left: 9%;
+	}
+	header .text-right {
+	 	padding-right: 25px;
+	}
+	header .text-right i {
+		padding: 0 20px 0 0;
+		color: #43525d !important;
+	}
+</style>
+</head>
+<body>
+</body>
+	
+	<header class="header-class row">
+		<div class="text-left col-md-6">
+			<i class="fa fa-envelope"></i> nahid@gmail.com  
+			<i class="fa fa-phone pl-4"></i> 0123456789
+		</div>
+		<div class="text-right col-md-6">
+			<i class="fa fa-facebook"></i>
+			<i class="fa fa-twitter"></i>
+			<i class="fa fa-google-plus"></i>
+			<i class="fa fa-instagram"></i>
+		</div>
+	</header>
+	<nav class="navbar navbar-default">
+  		<div class="container">
+	    	<div class="navbar-header">
+	    		<div class="my-logo-container">
+	    			<a class="navbar-brand my-logo" href="#Home"><img src="logo.png"></a>	
+		      	</div>
+		      	<div class="button-toggle">
+			      	<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+				        <span class="icon-bar"></span>
+				        <span class="icon-bar"></span>
+				        <span class="icon-bar"></span>                        
+			      	</button>
+		      	</div>      			
+    		</div>
+	    	<div class="collapse navbar-collapse" id="myNavbar">
+		      	<ul style="float: right;display: inline-block;"  class="nav navbar-nav navbar-left">
+			        <li><a href="#home">Home</a></li>
+			        <li><a href="#about">About</a></li>
+			        <li><a href="#products">Products</a></li>
+			        <li><a href="#Deals">Hot Deals</a></li>
+			        <li><a href="#contact">Contact</a></li>
+		      	</ul>
+	    	</div>
+	    	<div class="header-icon">
+		    	<i class="fa fa-search"></i>
+		    	<i class="fa fa-user-secret"></i>
+		    	<i class="fa fa-shopping-cart"></i>
+	    	</div>
+	  	</div>
+	</nav>
+</html>
