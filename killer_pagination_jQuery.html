@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+.mystyle {
+	border: 1px solid white;
+    background: black;
+    color: white
+}
+
+ul {
+	paddin: 0;
+    margin: 0;
+}
+ul li {
+    float: left;
+    padding: 10px;
+    list-style: none;
+    border: 1px solid  black;
+    background-color: white;
+    font-weight: bold; 
+}
+ul li:hover{
+	border: 1px solid white;
+    background: black;
+    color: white;
+}
+.next, .back {
+	margin-left : 40px;
+}
+span {
+	display: inline-block;
+	border: 1px solid black;
+    height: auto;
+    margin: 0;
+    padding: 10px;
+    font-size: 25px;
+}
+div.mother {
+	width: 200px; /* or whatever */
+    overflow: hidden;
+    white-space: nowrap;
+    border: 1px solid black;
+    margin-left: 11%;
+    margin-top: -5px; 
+}
+div button.first {
+    margin-top: -60px !important;
+}
+
+</style>
+</head>
+<body>
+
+<ul>
+	<li class="mystyle">Home</li>
+   	<li>Menu 0</li>
+	<li>Deals 0</li>
+	<li>About 0</li>
+	<li>Contact 0</li>
+    <li>Menu 1</li>
+	<li>Deals 1</li>
+	<li>About 1</li>
+	<li>Contact 1</li>
+    <li>Menu 2</li>
+    <li>Deals 2</li>
+    <li>About 2</li>
+    <li>Contact 3</li>
+</ul>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+<div class="mother">
+  <button style="background: black;color: white;font-weight: bold;" id="1"></button>
+  <button id="2"></button>
+  <button id="3"></button>
+  <button id="4"></button>
+</div>
+<div style="margin-top:-22px;margin-left:40px;width: 100px;">
+    <button class="first">first Index</button>
+</div>
+<div style="margin-top:-22px;margin-left:340px;width: 100px;">
+    <button class="last">Last Index</button>
+</div>
+<br>
+<button class="back">Back</button>
+<button class="next">Next</button>
+
+<script>
+//Pagination
+$(document).ready(function() {
+    $("li").click(function(){
+    	$(this).addClass("mystyle");
+        $(this).nextAll("li").removeClass("mystyle");
+        $(this).prevAll("li").removeClass("mystyle");
+    	buttonGroup();
+    });
+    $("button.next").click(function(){
+    	$("li.mystyle").next().click();
+    });
+    $("button.back").click(function(){
+    	$("li.mystyle").prev().click();
+    });
+    function buttonGroup() {
+    	$("#1").html(parseInt($("ul").find("li.mystyle").next().index()));
+        $("#2").html(parseInt($("ul").find("li.mystyle").next().next().index()));
+        $("#3").html(parseInt($("ul").find("li.mystyle").next().next().next().index()));
+        $("#4").html(parseInt($("ul").find("li.mystyle").next().next().next().next().index()));
+        hidden("button#4");
+        hidden("button#3");
+        hidden("button#2");
+        hidden("button#1");
+    }
+    buttonGroup();
+    $("button#4").click(function() {
+        $("ul").find("li.mystyle").next().next().next().click();
+    });
+    $("button#3").click(function() {
+        $("ul").find("li.mystyle").next().next().click();
+    });
+    $("button#2").click(function() {
+        $("ul").find("li.mystyle").next().click();
+    });
+    $("button#1").click(function() {
+        $("ul").find("li.mystyle").click();
+    });
+    function hidden(x) {
+        if ($(x).html() == -1) {
+            $(x).css('visibility', 'hidden');
+            $('button.next').css('visibility', 'hidden');
+            $('button.last').css('visibility', 'hidden');
+        } 
+        if ($(x).html() != -1) {
+            $(x).css('visibility', 'visible'); 
+            $('button.next').css('visibility', 'visible');
+            $('button.last').css('visibility', 'visible'); 
+        }
+        if ($(x).html() == 1) {
+        	$('button.back').css('visibility', 'hidden');	
+        	$('button.first').css('visibility', 'hidden');	
+        }
+        if ($(x).html() != 1) {
+        	$('button.back').css('visibility', 'visible');	
+        	$('button.first').css('visibility', 'visible');	
+        }
+    }
+    $(".last").click(function() {
+        $("ul li").click();
+    });
+    $(".first").click(function() {
+        $("ul li:first-child").click();
+    });
+})
+</script>  
+
+
+</body>
+</html>
+
