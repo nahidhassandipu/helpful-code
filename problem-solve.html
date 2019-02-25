@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<!-- Problem solved  -->
+
+<!-- Problem: Write some codes in vanila JS, that will sort a value's each positive character toUpperCase and negative character toLowerCase in an array -->
+
+
+<h3 id="demo"></h3>
+
+<script>
+
+	function _(id) {
+		return document.getElementById(id);
+	}
+
+	names = [
+	        'Jani',
+	        'Carl',
+	        'Margareth',
+	        'Hege',
+	        'Joe',
+	        'Gustav',
+	        'Birgit',
+	        'Mary',
+	        'Kai'
+	        ];
+
+	for (var i = 0; i < names.length; i++){
+		var txt = "";
+	    for (var j = 0; j < names[i].length; j++) {
+	    	if(j % 2 == 0) {
+	        	txt += names[i][j].toUpperCase();
+	        }
+	        if(j % 2 != 0) {
+	        	txt += names[i][j].toLowerCase();
+	        }
+	    }
+	    _("demo").innerHTML += txt + "<br>";
+	}
+
+</script>
+
+</body>
+</html>
