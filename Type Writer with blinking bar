@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Animated Type Writer with blinking bar</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <style>
+  	.bar::after {
+    	content: "|";
+        position: absolute;
+        clear: "both";
+        font-weight: bold;
+    }
+
+  </style>
+  
+</head>
+<body>
+
+<div class="jumbotron text-center">
+  <h1>Type Writer</h1>
+  <p id="text"></p>
+  <br><br>
+  <button id="start" class="btn btn-success">Start</button>
+  <button id="stop" class="btn btn-danger">Stop</button>
+</div>
+ 
+<script>
+    let txt = "Type anythong to see the effect...";
+    let i = 0; 
+    let interval;
+    const speed = 120;
+    const blink1 = 500;
+    const blink2 = 1000;
+    function __(cl){
+      return document.getElementsByClassName(cl);
+    }
+    function _(id) {
+      return document.getElementById(id);
+    }
+    function run() {
+      if(i < txt.length) {
+        _("text").innerHTML += txt.charAt(i);
+        i++;
+      }    	
+    }
+    _("start").addEventListener("click", function() {
+    	interval = setInterval(run, speed);
+    })
+    _("stop").addEventListener("click", function() {
+      	clearInterval(interval)
+    })
+    function barinterval() {
+    	return _("text").classList.add("bar");
+    }
+    function barirmnterval() {
+    	if (i == 0) {
+        	return _("text").classList.remove("bar");
+        }
+        if (i < txt.length && i > 0) {
+    		return false;
+    	} 
+        else {
+        	return _("text").classList.remove("bar");
+        }
+    }
+    setInterval(barinterval, blink1);
+    setInterval(barirmnterval, blink2);
+   
+</script>
+</body>
+</html>
