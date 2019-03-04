@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<textarea rows="7" cols="50" id="input" style="font-size:19px;">           	  Do       it by your self     this    is a  gibberish and informal paragraph     with lots of whitespace  Click the button to     display       your    textarea's value in array    		and minify standard     paragraph   		format.  	  	</textarea><br>
+<textarea rows="7" cols="50" id="output" style="font-size:19px"></textarea><br>
+<table id="tb" border=1>
+	
+</table>
+<button style="border:none;padding:10px;color:white;font-weight:bold;background:red" id="btn">Let's Make It Happen</button>
+
+<script>
+
+const _ = (id) => document.getElementById(id);
+
+_("btn").addEventListener("click", () => {
+    let getInput = _("input").value;
+    // Add .reverse() at the end to reverse the array or string
+    _("output").value = getInput.trim().replace(/\s+/g, " ");
+    let array = getInput.trim().replace(/\s+/g, "," ).split(",") 
+	for(let i = 0; i < array.length; i++) {
+    	_("tb").innerHTML += "<tr><td>" + array[i] + "</td></tr>";
+	}
+})
+
+</script>
+
+</body>
+</html>
