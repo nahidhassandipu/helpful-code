@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<style>
+    @import url(https://fonts.googleapis.com/css?family=Rubik);
+    body,
+    html {
+      color: #fff;
+      text-align: center;
+      background: #efefef;
+      font-family: Helvetica, sans-serif;
+      margin: 0;
+    }
+      .grid-item {
+        color: #fff;
+        background: skyblue;
+        padding: 3.5em 1em;
+        font-size: 1em;
+        font-weight: 700;
+      }
+      .main {
+        color: #959595;
+        background-color: white;
+        grid-area: main;
+        padding: 0;
+        overflow-x: scroll;
+        overflow-y: hidden;
+      }
+      .items {
+        position: relative;
+        width: 100%;
+        overflow-x: scroll;
+        overflow-y: hidden;
+        white-space: nowrap;
+        transition: all 0.2s;
+        transform: scale(0.98);
+        will-change: transform;
+        user-select: none;
+        cursor: pointer;
+      }
+      .active {
+        background: rgba(255, 255, 255, 0.9);
+        cursor: grabbing;
+        cursor: -webkit-grabbing;
+        transform: scale(1);
+      }
+      .item {
+        display: inline-block;
+        background: skyblue;
+        min-height: 250px;
+        min-width: 400px;
+        margin: 2em 1em;
+      }
+      @media screen and (max-width: 500px) {
+        .item {
+          min-height: 200px;
+          min-width: 200px;
+        }
+      }
+    }
+</style>
+</head>
+
+<body>
+  <main class="grid-item main">
+    <div class="items">
+      <div class="item item1"></div>
+      <div class="item item2"></div>
+      <div class="item item3"></div>
+      <div class="item item4"></div>
+      <div class="item item5"></div>
+      <div class="item item6"></div>
+      <div class="item item7"></div>
+      <div class="item item8"></div>
+      <div class="item item9"></div>
+      <div class="item item10"></div>
+    </div>
+  </main>
+
+<script>
+
+const slider = document.querySelector('.items');
+let targetX;
+let scrollleft;
+let isDown = false;
+
+slider.addEventListener('mousedown', (e) => {
+	isDown = true;
+    slider.classList.add('active');
+    targetX = e.pageX - slider.offsetLeft;
+    scrollleft = slider.scrollLeft;
+});
+slider.addEventListener('mousemove', (e) => {
+	if(!isDown) { return; }
+    e.preventDefault();
+    const updateTargetX = e.pageX - slider.offsetLeft;
+    const moveCalculate = (updateTargetX - targetX);
+    slider.scrollLeft = scrollleft - moveCalculate * 2;
+});
+slider.addEventListener('mouseup', () => {
+	isDown = false;
+    slider.classList.remove('active')
+});
+slider.addEventListener('mouseleave', () => {
+	isDown = false;
+    slider.classList.remove('active')
+});
+
+
+// For Touch events
+
+slider.addEventListener('touchstart', (e) => {
+	isDown = true;
+    slider.classList.add('active');
+    targetX = e.changedTouches[0].pageX - slider.offsetLeft;
+    scrollleft = slider.scrollLeft;
+    console.log("targetX: " + targetX, " scrollleft: " + scrollleft)
+});
+slider.addEventListener('touchmove', (e) => {
+	if(!isDown) { return; }
+    e.preventDefault();
+    const updateTargetX = e.changedTouches[0].pageX - slider.offsetLeft;
+    const moveCalculate = (updateTargetX - targetX);
+    slider.scrollLeft = scrollleft - moveCalculate * 2;
+});
+slider.addEventListener('touchend', () => {
+	isDown = false;
+    console.log(isDown)
+    slider.classList.remove('active')
+});
+slider.addEventListener('touchcancel', () => {
+	isDown = false;
+    slider.classList.remove('active')
+});
+
+
+</script>
+
+
+</body>
+</html> 
+
+
+
+
+
