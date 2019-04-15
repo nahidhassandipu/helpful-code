@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <scriptsrc="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  
+  <style>
+  	.thumbnails {
+    	border: 1px solid black;
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        height: auto
+    } 
+    .thumbnails .btn {
+    	margin: 2px;
+        width: 23.5%
+    }
+  </style>
+  
+</head>
+<body>
+
+<h2>JavaScript Calculator</h2>
+
+<div class='container'>
+	
+  	<input type="text" class="form-control" id="usr">
+    
+    <div class='row thumbnails'>
+    	<button type="button" id='CE' class="btn btn-secondary">CE</button>    	
+        <button type="button" id='C' class="btn btn-secondary">C</button>
+    	<button type="button" class="btn btn-secondary">X</button>
+    	<button type="button" class="btn btn-secondary arithmetic">/</button>
+    	<button type="button" class="btn btn-secondary num">7</button>
+    	<button type="button" class="btn btn-secondary num">8</button>
+    	<button type="button" class="btn btn-secondary num">9</button>
+        <button type="button" class="btn btn-secondary arithmetic">*</button>
+        <button type="button" class="btn btn-secondary num">4</button>
+    	<button type="button" class="btn btn-secondary num">5</button>
+    	<button type="button" class="btn btn-secondary num">6</button>
+        <button type="button" class="btn btn-secondary arithmetic">-</button>
+        <button type="button" class="btn btn-secondary num">1</button>
+    	<button type="button" class="btn btn-secondary num">2</button>
+    	<button type="button" class="btn btn-secondary num">3</button>
+        <button type="button" class="btn btn-secondary arithmetic">+</button>
+    	<button type="button" class="btn btn-secondary num">0</button>
+    	<button type="button" class="btn btn-secondary num">.</button>
+        <button type="button" id="eqaul" class="btn btn-secondary">=</button>
+    </div>
+</div>
+
+<p id="demo"></p>
+
+<script>
+
+const _ = (el) => document.querySelectorAll(el);
+const __ = (sl) => document.querySelector(sl);
+
+
+let num = _('.num');
+let arithmetic = _('.arithmetic');
+let eqaul = __("#eqaul");
+let ce = __("#CE");
+let c = __("#C");
+
+
+num.forEach(function(item) {
+	item.addEventListener('mousedown', () => {
+		__('#usr').value += item.innerHTML;
+	})	
+})
+
+arithmetic.forEach(function(item) {
+	item.addEventListener('mousedown', () => { 
+    	__('#usr').value += item.innerHTML;
+   	})	
+})
+
+eqaul.addEventListener('mousedown', () => { 
+	let usrValue = __('#usr').value;
+    __('#usr').value = eval(usrValue);
+})
+
+ce.addEventListener('mousedown', () => { 
+    __('#usr').value = "";
+})	
+
+c.addEventListener('mousedown', () => { 
+    let get = __('#usr').value;
+    console.log(get.slice(-1))
+    /*
+    for (let i = 0; i < get.length; i++) {
+    	
+    } */
+})	
+
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
