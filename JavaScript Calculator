@@ -2,21 +2,21 @@
 <html>
 <head>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-  <scriptsrc="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
   
   <style>
   	.thumbnails {
     	border: 1px solid black;
         width: 100%;
-        padding: 10px;
+        padding: 0;
         margin: 10px 0;
-        height: auto
+        height: auto;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: row
     } 
     .thumbnails .btn {
-    	margin: 2px;
-        width: 23.5%
+    	margin: 1.5%;
+        width: 22%;
     }
   </style>
   
@@ -27,7 +27,7 @@
 
 <div class='container'>
 	
-  	<input type="text" class="form-control" id="usr">
+  	<input type="text" class="form-control" id="usr" onkeypress='return keypresshandler(event)'>
     
     <div class='row thumbnails'>
     	<button type="button" id='CE' class="btn btn-secondary">CE</button>    	
@@ -58,15 +58,18 @@
 
 const _ = (el) => document.querySelectorAll(el);
 const __ = (sl) => document.querySelector(sl);
-
-
 let num = _('.num');
 let arithmetic = _('.arithmetic');
 let eqaul = __("#eqaul");
 let ce = __("#CE");
 let c = __("#C");
 
-
+function keypresshandler(event) {
+    var charCode = event.keyCode;
+    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+        return false;
+    }
+}
 num.forEach(function(item) {
 	item.addEventListener('mousedown', () => {
 		__('#usr').value += item.innerHTML;
@@ -89,16 +92,8 @@ c.addEventListener('mousedown', () => {
     __('#usr').value = getVal.slice(0, getVal.length -1)
 })
 
+
 </script>
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
