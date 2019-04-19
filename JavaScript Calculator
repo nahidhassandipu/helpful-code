@@ -72,30 +72,22 @@ num.forEach(function(item) {
 		__('#usr').value += item.innerHTML;
 	})	
 })
-
 arithmetic.forEach(function(item) {
 	item.addEventListener('mousedown', () => { 
     	__('#usr').value += item.innerHTML;
    	})	
 })
-
 eqaul.addEventListener('mousedown', () => { 
 	let usrValue = __('#usr').value;
     __('#usr').value = eval(usrValue);
 })
-
 ce.addEventListener('mousedown', () => { 
     __('#usr').value = "";
 })	
-
-c.addEventListener('mousedown', () => { 
-    let get = __('#usr').value;
-    console.log(get.slice(-1))
-    /*
-    for (let i = 0; i < get.length; i++) {
-    	
-    } */
-})	
+c.addEventListener('mousedown', () => {
+    let getVal = __('#usr').value;
+    __('#usr').value = getVal.slice(0, getVal.length -1)
+})
 
 </script>
 
