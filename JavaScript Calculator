@@ -5,17 +5,13 @@
   
   <style>
   	.thumbnails {
-    	border: 1px solid black;
-        width: 100%;
-        padding: 0;
+    	border: 1px solid #ccc;
+        border-radius: 4px;
         margin: 10px 0;
-        height: auto;
     } 
     .thumbnails .btn {
     	margin: 1.5%;
         width: 22%;
-        text-align: center;
-        line-height: 25px;
         font-size: 23px;
     }
   </style>
@@ -50,6 +46,8 @@
         <button type="button" id="eqaul" class="btn btn-secondary">=</button>        
     </div>
 </div>
+
+<p id="demo"></p>
 
 <script>
 
