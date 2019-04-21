@@ -22,7 +22,7 @@
 <center><h2>JavaScript Calculator</h2></center>
 
 <div class='container'>
-  	<input type="text" class="form-control" id="usr" onkeypress='return keypressHandler(event)'>
+	<input type="text" class="form-control" id="usr" onpaste="event.preventDefault()" onkeypress='return keypressHandler(event)'>
     <div class='row thumbnails'>
     	<button type="button" id='CE' class="btn btn-primary">CE</button>    	
         <button type="button" id='C' class="btn btn-warning">C</button>
@@ -51,47 +51,47 @@
 
 <script>
 
-const _ = (el) => document.querySelectorAll(el);
-const __ = (sl) => document.querySelector(sl);
-let num = _('.num');
-let arithmetic = _('.arithmetic');
-let eqaul = __("#eqaul");
-let ce = __("#CE");
-let c = __("#C");
+	const _ = (el) => document.querySelectorAll(el);
+	const __ = (sl) => document.querySelector(sl);
+	let num = _('.num');
+	let arithmetic = _('.arithmetic');
+	let eqaul = __("#eqaul");
+	let ce = __("#CE");
+	let c = __("#C");
 
-function keypressHandler(event) {
-    var charCode = event.keyCode;
-    if (charCode == 37) {
-    	return true;
-    }
-    else if (charCode == 44) {
-    	return false;
-    }
-    else if (charCode > 31 && (charCode < 42 || charCode > 57)) {
-        return false;
-    }
-}
-num.forEach(function(item) {
-	item.addEventListener('mousedown', () => {
-		__('#usr').value += item.innerHTML;
+	function keypressHandler(event) {
+		var charCode = event.keyCode;
+		if (charCode == 37) {
+			return true;
+		}
+		else if (charCode == 44) {
+			return false;
+		}
+		else if (charCode > 31 && (charCode < 42 || charCode > 57)) {
+			return false;
+		}
+	}
+	num.forEach(function(item) {
+		item.addEventListener('mousedown', () => {
+			__('#usr').value += item.innerHTML;
+		})	
+	})
+	arithmetic.forEach(function(item) {
+		item.addEventListener('mousedown', () => { 
+			__('#usr').value += item.innerHTML;
+		})	
+	})
+	eqaul.addEventListener('mousedown', () => { 
+		let usrValue = __('#usr').value;
+		__('#usr').value = eval(usrValue);
+	})
+	ce.addEventListener('mousedown', () => { 
+		__('#usr').value = "";
 	})	
-})
-arithmetic.forEach(function(item) {
-	item.addEventListener('mousedown', () => { 
-    	__('#usr').value += item.innerHTML;
-   	})	
-})
-eqaul.addEventListener('mousedown', () => { 
-	let usrValue = __('#usr').value;
-    __('#usr').value = eval(usrValue);
-})
-ce.addEventListener('mousedown', () => { 
-    __('#usr').value = "";
-})	
-c.addEventListener('mousedown', () => {
-    let getVal = __('#usr').value;
-    __('#usr').value = getVal.slice(0, getVal.length -1)
-})
+	c.addEventListener('mousedown', () => {
+		let getVal = __('#usr').value;
+		__('#usr').value = getVal.slice(0, getVal.length -1)
+	})
 
 
 </script>
