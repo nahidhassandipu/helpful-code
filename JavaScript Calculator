@@ -26,21 +26,21 @@
     <div class='row thumbnails'>
     	<button type="button" id='CE' class="btn btn-primary">CE</button>    	
         <button type="button" id='C' class="btn btn-warning">C</button>
-    	<button type="button" class="btn btn-secondary arithmetic">%</button>
-    	<button type="button" class="btn btn-secondary arithmetic">/</button>
+    	<button type="button" id='mod' class="btn btn-secondary arithmetic">%</button>
+    	<button type="button" id='div' class="btn btn-secondary arithmetic">/</button>
     	<button type="button" class="btn btn-secondary num">7</button>
     	<button type="button" class="btn btn-secondary num">8</button>
     	<button type="button" class="btn btn-secondary num">9</button>
-        <button type="button" class="btn btn-secondary arithmetic">*</button>
+        <button type="button" id='star' class="btn btn-secondary arithmetic">*</button>
         <button type="button" class="btn btn-secondary num">4</button>
     	<button type="button" class="btn btn-secondary num">5</button>
     	<button type="button" class="btn btn-secondary num">6</button>
-        <button type="button" class="btn btn-secondary arithmetic">-</button>
+        <button type="button" id='minus' class="btn btn-secondary arithmetic">-</button>
         <button type="button" class="btn btn-secondary num">1</button>
     	<button type="button" class="btn btn-secondary num">2</button>
     	<button type="button" class="btn btn-secondary num">3</button>
-        <button type="button" class="btn btn-secondary arithmetic">+</button>
-        <button type="button" class="btn btn-secondary num">.</button>
+        <button type="button" id='plus' class="btn btn-secondary arithmetic">+</button>
+        <button type="button" id='dec' class="btn btn-secondary num">.</button>
     	<button type="button" class="btn btn-secondary num">0</button>    	
         <button type="button" class="btn btn-secondary num">00</button>
         <button type="button" id="eqaul" class="btn btn-secondary">=</button>        
@@ -58,10 +58,11 @@
 	let eqaul = __("#eqaul");
 	let ce = __("#CE");
 	let c = __("#C");
-
+  	
 	function keypressHandler(event) {
 		var charCode = event.keyCode;
-		if (charCode == 37) {
+        let bool = false;
+        if (charCode == 37) {
 			return true;
 		}
 		else if (charCode == 44) {
@@ -71,19 +72,40 @@
 			return false;
 		}
 	}
+    
 	num.forEach(function(item) {
 		item.addEventListener('mousedown', () => {
+        	__("#star").disabled = false;
+            __("#plus").disabled = false;
+            __("#minus").disabled = false;
+            __("#div").disabled = false;
+            __("#mod").disabled = false;
 			__('#usr').value += item.innerHTML;
 		})	
 	})
 	arithmetic.forEach(function(item) {
-		item.addEventListener('mousedown', () => { 
-			__('#usr').value += item.innerHTML;
+		item.addEventListener('mousedown', () => {
+        	__('#usr').value += item.innerHTML;
+            __("#star").disabled = true;
+            __("#plus").disabled = true;
+            __("#minus").disabled = true;
+            __("#div").disabled = true;
+            __("#mod").disabled = true;
+            __("#dec").disabled = false;
 		})	
 	})
-	eqaul.addEventListener('mousedown', () => { 
+    __("#dec").addEventListener('mousedown', () => {
+   		__("#dec").disabled = true;
+   })
+	eqaul.addEventListener('mousedown', () => {
 		let usrValue = __('#usr').value;
-		__('#usr').value = eval(usrValue);
+        if(usrValue[usrValue.length - 1].match(/[^0-9]/g)) {
+            __('#usr').value = eval(usrValue.slice(0, usrValue.length -1));
+        } 
+        else {
+        	__('#usr').value = eval(usrValue);	
+        }
+        
 	})
 	ce.addEventListener('mousedown', () => { 
 		__('#usr').value = "";
@@ -98,3 +120,4 @@
 
 </body>
 </html>
+
