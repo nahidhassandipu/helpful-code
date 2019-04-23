@@ -109,10 +109,16 @@
 	})
 	ce.addEventListener('mousedown', () => { 
 		__('#usr').value = "";
+        if (__('#usr').value == "") {
+    		__("#dec").disabled = false;
+    	}
 	})	
 	c.addEventListener('mousedown', () => {
 		let getVal = __('#usr').value;
-		__('#usr').value = getVal.slice(0, getVal.length -1)
+		__('#usr').value = getVal.slice(0, getVal.length -1);
+        if (__('#usr').value == "") {
+    		__("#dec").disabled = false;
+    	}
 	})
 
 
