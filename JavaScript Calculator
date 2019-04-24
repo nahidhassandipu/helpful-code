@@ -51,6 +51,7 @@
 
 <script>
 
+window.addEventListener('load', function() {
 	const _ = (el) => document.querySelectorAll(el);
 	const __ = (sl) => document.querySelector(sl);
 	let num = _('.num');
@@ -58,7 +59,31 @@
 	let eqaul = __("#eqaul");
 	let ce = __("#CE");
 	let c = __("#C");
-  	
+    checkDisabled(true)
+    
+    __('#usr').addEventListener('focus', () => {
+    	if (__('#usr').value == "" ) {
+        	checkDisabled(true)
+        } 
+        if (__('#usr').value !== "" ){
+        	checkDisabled(false)
+        }
+    })
+    __('#usr').addEventListener('input', () => {
+    	if (__('#usr').value !== "" ) {
+        	checkDisabled(false)
+        }
+        if (__('#usr').value == "" ) {
+        	checkDisabled(true)
+        }
+    })
+    function checkDisabled(bool) {
+        __("#star").disabled = bool;
+        __("#plus").disabled = bool;
+        __("#minus").disabled = bool;
+        __("#div").disabled = bool;
+        __("#mod").disabled = bool;	
+    }
 	function keypressHandler(event) {
 		var charCode = event.keyCode;
         let bool = false;
@@ -72,44 +97,36 @@
 			return false;
 		}
 	}
-    
 	num.forEach(function(item) {
 		item.addEventListener('mousedown', () => {
-        	__("#star").disabled = false;
-            __("#plus").disabled = false;
-            __("#minus").disabled = false;
-            __("#div").disabled = false;
-            __("#mod").disabled = false;
+        	checkDisabled(false)
 			__('#usr').value += item.innerHTML;
 		})	
 	})
 	arithmetic.forEach(function(item) {
 		item.addEventListener('mousedown', () => {
         	__('#usr').value += item.innerHTML;
-            __("#star").disabled = true;
-            __("#plus").disabled = true;
-            __("#minus").disabled = true;
-            __("#div").disabled = true;
-            __("#mod").disabled = true;
+            checkDisabled(true)
             __("#dec").disabled = false;
 		})	
 	})
     __("#dec").addEventListener('mousedown', () => {
    		__("#dec").disabled = true;
-   })
-	eqaul.addEventListener('mousedown', () => {
+   	})
+   	eqaul.addEventListener('mousedown', () => {
 		let usrValue = __('#usr').value;
+        checkDisabled(false)
         if(usrValue[usrValue.length - 1].match(/[^0-9]/g)) {
             __('#usr').value = eval(usrValue.slice(0, usrValue.length -1));
         } 
         else {
         	__('#usr').value = eval(usrValue);	
         }
-        
 	})
 	ce.addEventListener('mousedown', () => { 
 		__('#usr').value = "";
         if (__('#usr').value == "") {
+        	checkDisabled(true)
     		__("#dec").disabled = false;
     	}
 	})	
@@ -117,10 +134,11 @@
 		let getVal = __('#usr').value;
 		__('#usr').value = getVal.slice(0, getVal.length -1);
         if (__('#usr').value == "") {
+        	checkDisabled(true)
     		__("#dec").disabled = false;
     	}
 	})
-
+}) 
 
 </script>
 
