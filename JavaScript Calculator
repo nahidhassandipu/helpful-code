@@ -51,97 +51,122 @@
 
 <script>
 
-window.addEventListener('load', function() {
-	const _ = (el) => document.querySelectorAll(el);
-	const __ = (sl) => document.querySelector(sl);
-	let num = _('.num');
-	let arithmetic = _('.arithmetic');
-	let eqaul = __("#eqaul");
-	let ce = __("#CE");
-	let c = __("#C");
-    checkDisabled(true)
-    
-    __('#usr').addEventListener('focus', () => {
-    	if (__('#usr').value == "" ) {
-        	checkDisabled(true)
-        } 
-        if (__('#usr').value !== "" ){
-        	checkDisabled(false)
-        }
-    })
-    __('#usr').addEventListener('input', () => {
-    	if (__('#usr').value !== "" ) {
-        	checkDisabled(false)
-        }
-        if (__('#usr').value == "" ) {
-        	checkDisabled(true)
-        }
-    })
-    function checkDisabled(bool) {
-        __("#star").disabled = bool;
-        __("#plus").disabled = bool;
-        __("#minus").disabled = bool;
-        __("#div").disabled = bool;
-        __("#mod").disabled = bool;	
+  const _ = (el) => document.querySelectorAll(el);
+  const __ = (sl) => document.querySelector(sl);
+  let num = _('.num');
+  let arithmetic = _('.arithmetic');
+  let eqaul = __("#eqaul");
+  let ce = __("#CE");
+  let c = __("#C");
+  
+  function keypressHandler(event) {
+    let charCode = event.which || event.keyCode;
+    switch (charCode) {
+    	case 45:
+        	__("#minus").click();
+            return false;
+        case 43:
+            __("#plus").click();
+            return false;
+        case 42:
+            __("#star").click();
+            return false;
+        case 47:
+            __("#div").click();
+            return false;
+        case 46:
+            __("#dec").click();
+            return false;
+        case 37:
+            __("#mod").click();
+            return false;
+        case 13:
+            __("#eqaul").click();
+            return true;
     }
-	function keypressHandler(event) {
-		var charCode = event.keyCode;
-        let bool = false;
-        if (charCode == 37) {
-			return true;
-		}
-		else if (charCode == 44) {
-			return false;
-		}
-		else if (charCode > 31 && (charCode < 42 || charCode > 57)) {
-			return false;
-		}
-	}
-	num.forEach(function(item) {
-		item.addEventListener('mousedown', () => {
-        	checkDisabled(false)
-			__('#usr').value += item.innerHTML;
-		})	
-	})
-	arithmetic.forEach(function(item) {
-		item.addEventListener('mousedown', () => {
-        	__('#usr').value += item.innerHTML;
-            checkDisabled(true)
-            __("#dec").disabled = false;
-		})	
-	})
-    __("#dec").addEventListener('mousedown', () => {
-   		__("#dec").disabled = true;
-   	})
-   	eqaul.addEventListener('mousedown', () => {
-		let usrValue = __('#usr').value;
-        checkDisabled(false)
-        if(usrValue[usrValue.length - 1].match(/[^0-9]/g)) {
-            __('#usr').value = eval(usrValue.slice(0, usrValue.length -1));
-        } 
-        else {
-        	__('#usr').value = eval(usrValue);	
-        }
-	})
-	ce.addEventListener('mousedown', () => { 
-		__('#usr').value = "";
-        if (__('#usr').value == "") {
-        	checkDisabled(true)
-    		__("#dec").disabled = false;
-    	}
-	})	
-	c.addEventListener('mousedown', () => {
-		let getVal = __('#usr').value;
-		__('#usr').value = getVal.slice(0, getVal.length -1);
-        if (__('#usr').value == "") {
-        	checkDisabled(true)
-    		__("#dec").disabled = false;
-    	}
-	})
+    if (charCode == 37) {
+      return true;
+    }
+    else if (charCode == 44) {
+      return false;
+    }
+    else if (charCode > 31 && (charCode < 42 || charCode > 57)) {
+      return false;
+    }
+  }
+
+  __('#usr').addEventListener('focus', () => {
+    if (__('#usr').value == "" ) {
+      checkDisabled(true)
+    } 
+    if (__('#usr').value !== "" ){
+      checkDisabled(false)
+    }
+  })
+  
+  __('#usr').addEventListener('input', (event) => {
+    if (__('#usr').value !== "" ) {
+      checkDisabled(false)
+    }
+    if (__('#usr').value == "" ) {
+      checkDisabled(true)
+    }
+  })
+  
+  function checkDisabled(bool) {
+    __("#star").disabled = bool;
+    __("#plus").disabled = bool;
+    __("#minus").disabled = bool;
+    __("#div").disabled = bool;
+    __("#mod").disabled = bool;	
+  }
+
+  num.forEach(function(item) {
+    item.addEventListener('click', () => {
+      checkDisabled(false)
+      __('#usr').value += item.innerHTML;
+    })	
+  })
+  arithmetic.forEach(function(item) {
+    item.addEventListener('click', () => {
+      __('#usr').value += item.innerHTML;
+      checkDisabled(true)
+      __("#dec").disabled = false;
+    })	
+  })
+  __("#dec").addEventListener('click', () => {
+    __("#dec").disabled = true;
+  })
+  eqaul.addEventListener('click', () => {
+    let usrValue = __('#usr').value;
+    checkDisabled(false)
+    if(usrValue[usrValue.length - 1].match(/[^0-9]/g)) {
+      __('#usr').value = eval(usrValue.slice(0, usrValue.length -1));
+    } 
+    else {
+      __('#usr').value = eval(usrValue);	
+    }
+  })
+  ce.addEventListener('click', () => { 
+    __('#usr').value = "";
+    if (__('#usr').value == "") {
+      checkDisabled(true)
+      __("#dec").disabled = false;
+    }
+  })	
+  c.addEventListener('click', () => {
+    let getVal = __('#usr').value;
+    __('#usr').value = getVal.slice(0, getVal.length -1);
+    if (__('#usr').value == "") {
+      checkDisabled(true)
+      __("#dec").disabled = false;
+    }
+  })
+window.addEventListener('load', function() {
+  checkDisabled(true)
 }) 
 
 </script>
 
 </body>
 </html>
-
