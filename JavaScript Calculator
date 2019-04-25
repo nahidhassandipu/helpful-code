@@ -3,11 +3,9 @@
 <head>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
   <style>
-  	body {
-  		box-sizing: border-box;
-  	}
   	.container {
   		max-width: 400px;
+        min-width: 250px;
   		margin-top: 20px;
   		border: 1px solid #eee;
   		border-radius: 10px;
@@ -17,19 +15,10 @@
 		box-shadow: 0px 0px 5px 1px rgba(0,0,0,0.75);
 
   	}
-  	.thumbnails {
-    	border: 1px solid #ccc;
-        border-radius: 4px;
-        margin: 10px 0;
-    } 
     .thumbnails .btn {
     	margin: 1.5%;
         width: 22%;
         font-size: 23px;
-    }
-    h2 {
-    	padding: 10px;
-    	color: steelblue;
     }
     #usr {
     	font-size: 26px;
@@ -42,13 +31,17 @@
 <body>
 
 
-<div class='container'>
-	<center><h2>JavaScript Calculator</h2></center>
+<div class='container pb-3'>
+	<center>
+    	<font color="steelblue">
+        	<h2 class='p-3'>JavaScript Calculator</h2>
+      	</font>
+  	</center>
 	<input type="text" class="form-control" id="usr" onpaste="event.preventDefault()" 
 	onkeypress="return keypressHandler(event)">
-    <div class='row thumbnails'>
+    <div class='row thumbnails img-thumbnail mt-2 m-0'>
     	<button type="button" id='CE' class="btn btn-primary">CE</button>    	
-        <button type="button" id='C' class="btn btn-warning">C</button>
+        <button type="button" id='C' class="btn btn-info">C</button>
     	<button type="button" id='mod' class="btn btn-secondary arithmetic">%</button>
     	<button type="button" id='div' class="btn btn-secondary arithmetic">/</button>
     	<button type="button" class="btn btn-secondary num">7</button>
