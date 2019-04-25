@@ -106,13 +106,7 @@ function keypressHandler(event) {
             __("#eqaul").click();
             return true;
     }
-    if (charCode == 37) {
-      	return true;
-    }
-    else if (charCode == 44) {
-      	return false;
-    }
-    else if (charCode > 31 && (charCode < 42 || charCode > 57)) {
+    if (charCode > 31 && (charCode < 42 || charCode > 57)) {
       	return false;
     }
 }
@@ -124,11 +118,12 @@ __('#usr').addEventListener('focus', () => {
       	checkDisabled(false)
     }
 })
-__('#usr').addEventListener('input', (event) => {
-    if (__('#usr').value !== "" ) {
+__('#usr').addEventListener('input', event => {
+	let getVal = __('#usr').value;
+    if (__('#usr').value !== "") {
   	    checkDisabled(false)
     }
-    if (__('#usr').value == "" ) {
+    if (__('#usr').value == "" || getVal[getVal.length - 1].match(/[^0-9]/g)) {
       	checkDisabled(true)
     }
 })
@@ -139,13 +134,13 @@ function checkDisabled(bool) {
     __("#div").disabled = bool;
     __("#mod").disabled = bool;	
 }
-num.forEach(function(item) {
+num.forEach(item => {
     item.addEventListener('click', () => {
       	checkDisabled(false)
       __('#usr').value += item.innerHTML;
     })	
 })
-arithmetic.forEach(function(item) {
+arithmetic.forEach(item => {
     item.addEventListener('click', () => {
     	__('#usr').value += item.innerHTML;
       	checkDisabled(true)
@@ -175,9 +170,12 @@ ce.addEventListener('click', () => {
 c.addEventListener('click', () => {
     let getVal = __('#usr').value;
     __('#usr').value = getVal.slice(0, getVal.length -1);
-    if (__('#usr').value == "") {
+    if (__('#usr').value == "" || getVal[getVal.length - 2].match(/[^0-9]/g)) {
       	checkDisabled(true)
       	__("#dec").disabled = false;
+    } 
+    else if (getVal[getVal.length - 2].match(/[0-9]/g)) {
+    	checkDisabled(false)
     }
 })
 window.addEventListener('load', function() {
