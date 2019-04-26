@@ -171,7 +171,7 @@ c.addEventListener('click', () => {
     	checkDisabled(false)
     }
 })
-window.addEventListener('load', function() {
+window.addEventListener('load', () => {
   	checkDisabled(true)
 }) 
 
