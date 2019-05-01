@@ -4,7 +4,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
   <style>
   	.container {
-  		max-width: 400px;
+		max-width: 400px;
         min-width: 250px;
   		margin-top: 20px;
   		border: 1px solid #eee;
@@ -63,8 +63,6 @@
         <button type="button" id="eqaul" class="btn btn-secondary">=</button>        
     </div>
 </div>
-
-<p id="demo"></p>
 
 <script>
 
