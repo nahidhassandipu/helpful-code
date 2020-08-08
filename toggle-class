@@ -1,0 +1,9 @@
+let element = document.querySelectorAll('.navbar-nav .nav-item');
+        for (let i = 0; i < element.length; i++) {
+            element[i].children[0].addEventListener('click', (e) => {
+                if (element[i].children[0].tagName === 'A') {
+                    let sibling = element[i].children[0].nextElementSibling;
+                    sibling.classList.toggle('show')
+                } 
+            })
+        }
